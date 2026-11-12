@@ -10,9 +10,9 @@ Use this repo as the project folder. Nothing has been designed or built for the 
 
 These are rough answers from memory, not measurements.
 
-- Weight: the old tank was somewhere between 10 and 20 kg with the battery in. It still needs weighing.
+- Weight: I can't weigh it and I'm not good at guessing. Claude estimated 10 to 23 kg from the CAD files (see Weight estimate below), which fits my first guess of 10 to 20 kg.
 - Terrain: all of it. Indoor floors, grass, rough ground like dirt and gravel, and drops and curbs.
-- Payload: nobody sits on the tank itself. The old tank could pull a cart with me sitting in the cart, and the new one should be able to do that too. Where the cart hooked on and how heavy the cart was still need recording.
+- Payload: nobody sits on the tank itself. The old tank could pull a cart with me sitting in the cart, and the new one should be able to do that too. The cart is a pull-along cart with a handle. The handle went over a wire lock pin (a hitch pin with a spring wire loop) on the tank. Where exactly the pin was mounted will show in the photos. The cart's weight isn't known.
 - Reuse: the new tank keeps the same electronics and motors.
 - I don't remember what was happening when the old frame snapped, or whether it got worse over time.
 
@@ -61,7 +61,37 @@ Licences:
 
 How it was found: no credits in the repo or the files, no matching downloads on this Mac, and nothing useful in my Tinkercad account (the "1m long tank" design was created Sep 16, 2024 and has no "copied from" credit). Once I remembered the arms, wheels, and tracks came as a set, a search for tank suspension arm sets turned up fastmike75.
 
+## Weight estimate
+
+Estimated by Claude on Nov 12, 2026. This is not a measurement.
+
+How: the Tinkercad export has the whole frame but only one of each repeated part. Each part's volume was measured from the file, then multiplied by how many the tank has. Printed parts were counted as plastic walls plus 15 to 40% infill. Counts come from the May 2025 screenshot: 6 suspension arms per side, each with a roller and a shock, and a sprocket at each end of each side.
+
+| Part | Estimate |
+|---|---|
+| Track links (about 50 to 60 per side) | 2.4 to 5.6 kg |
+| Grouser bars (if fitted) | 0 to 2.3 kg |
+| Bottom rollers (12) | 0.7 to 1.4 kg |
+| Suspension arms (12) | 0.5 to 1.1 kg |
+| Drive and idler sprockets (4) | 0.3 to 0.7 kg |
+| Printed frame | 0.8 to 1.6 kg |
+| Other printed plates and blocks | 0.4 to 0.9 kg |
+| Batteries (4 x about 380 g) | 1.5 kg |
+| Motors and gearboxes (models unknown) | 1 to 4 kg |
+| Pivot rods (6 x 15 mm aluminium) | 0.9 to 1.5 kg |
+| Shocks (12) | 0.5 to 1.2 kg |
+| Pins, bolts, couplers, electronics, wiring | 0.6 to 1.4 kg |
+| Total | about 10 to 23 kg |
+
+The middle of that, around 15 kg, is a reasonable number to design around until there's a real measurement. The biggest unknowns are the motors, the number of track links and how solid they were printed, and whether the grouser bars were on.
+
+Pulling the cart: the tank can't pull harder than its tracks can grip, which is roughly its own weight on a good surface. So the hitch pin and the frame around it need to take a pull of very roughly 15 kg (about 150 N), plus jerks when starting. Bumps and drops are still the bigger loads for the frame.
+
 ## Electronics and code
+
+Batteries: 4 Zeee 3S LiPo packs (5200 mAh, 11.1 V, 80C, EC5 plug, about 380 g each): https://zeeebattery.com/collections/zeee-rc-car-lipo-battery/products/zeee-3s-lipo-battery-5200mah-11-1v-80c-ec5. Two pairs are wired in series, and the two pairs are joined in parallel. That makes 6S2P: 22.2 V nominal, 25.2 V fully charged, 10,400 mAh.
+
+The older code is written for the Arduino Motor Shield Rev3, which is rated for 5 to 12 V and about 2 A per motor. That doesn't fit a 25 V battery or motors strong enough to pull a cart, so the tank probably uses a different motor driver. Check what's actually on the tank before touching the code.
 
 There are two different Arduino sketches that are both called tonk_control_v2. Don't flash either one based on the name. Check the motor driver and wiring on the tank first.
 
@@ -83,7 +113,8 @@ Continuous metal side rails with bolted crossmembers, keeping the existing suspe
 - [x] Record the suspension-pin replacements, roller wear, track performance, and flange-coupler fix.
 - [ ] Photograph the cracks and identify which frame pieces failed.
 - [x] Record rough weight, terrain, and payload.
-- [ ] Weigh the tank with its battery and decide the heaviest payload it needs to carry.
+- [x] Estimate the tank's weight (10 to 23 kg from CAD, Nov 12, 2026).
+- [ ] Weigh the tank if a scale turns up (a luggage scale or the makerspace could work).
 - [ ] Check the reusable parts and record their mounting dimensions.
 - [x] Establish that the old roller bolts gripped undersized holes, locked the rollers, and caused sliding contact with the moving track.
 - [ ] Measure the bottom roller axle assembly and track-contact surfaces; agree on axle retention and the rotating interface before redesigning it.
