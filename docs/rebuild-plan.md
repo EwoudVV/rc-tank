@@ -13,7 +13,7 @@ These are rough answers from memory, not measurements.
 - Weight: I can't weigh it and I'm not good at guessing. Claude estimated 10 to 23 kg from the CAD files (see Weight estimate below), which fits my first guess of 10 to 20 kg.
 - Terrain: all of it. Indoor floors, grass, rough ground like dirt and gravel, and drops and curbs.
 - Payload: nobody sits on the tank itself. The old tank could pull a cart with me sitting in the cart, and the new one should be able to do that too. The cart is a pull-along cart with a handle. The handle went over a wire lock pin (a hitch pin with a spring wire loop) on the tank. Where exactly the pin was mounted will show in the photos. The cart's weight isn't known.
-- Reuse: the new tank keeps the same electronics and motors.
+- Reuse: the new tank keeps the same electronics, the motors, and the 4 batteries (they're expensive). My motor mount design already has the real bolt holes, so keep it.
 - I don't remember what was happening when the old frame snapped, or whether it got worse over time.
 
 Drops and a heavy payload put the biggest loads on the tank, so the new frame, suspension, rollers, and track pins need to be checked against those, not just against driving on flat ground.
@@ -77,7 +77,7 @@ How: the Tinkercad export has the whole frame but only one of each repeated part
 | Printed frame | 0.8 to 1.6 kg |
 | Other printed plates and blocks | 0.4 to 0.9 kg |
 | Batteries (4 x about 380 g) | 1.5 kg |
-| Motors and gearboxes (models unknown) | 1 to 4 kg |
+| Motors (2 x 24 V wire-feed worm gear motors, model unknown) | 2 to 4 kg |
 | Pivot rods (6 x 15 mm aluminium) | 0.9 to 1.5 kg |
 | Shocks (12) | 0.5 to 1.2 kg |
 | Pins, bolts, couplers, electronics, wiring | 0.6 to 1.4 kg |
@@ -91,12 +91,26 @@ Pulling the cart: the tank can't pull harder than its tracks can grip, which is 
 
 Batteries: 4 Zeee 3S LiPo packs (5200 mAh, 11.1 V, 80C, EC5 plug, about 380 g each): https://zeeebattery.com/collections/zeee-rc-car-lipo-battery/products/zeee-3s-lipo-battery-5200mah-11-1v-80c-ec5. Two pairs are wired in series, and the two pairs are joined in parallel. That makes 6S2P: 22.2 V nominal, 25.2 V fully charged, 10,400 mAh.
 
-The older code is written for the Arduino Motor Shield Rev3, which is rated for 5 to 12 V and about 2 A per motor. That doesn't fit a 25 V battery or motors strong enough to pull a cart, so the tank probably uses a different motor driver. Check what's actually on the tank before touching the code.
+Motor driver: Cytron SHIELD-MDD10 (10 A, 7 to 30 V, 2 channels), which replaced the old Arduino Motor Shield: https://www.robotshop.com/products/cytron-10a-7-30v-dual-channel-dc-motor-driver-shield. From Cytron's datasheet (Rev 1.0, May 2019):
+
+- 7 to 30 V input. A full 6S battery is 25.2 V, so that's inside the limit.
+- 10 A continuous and 30 A peak per motor. It limits the current itself if a motor stalls, and the limit drops as the board gets hot.
+- It shuts the motors off if the battery voltage drops too low.
+- Plugging the battery in backwards destroys it instantly.
+- It powers the Arduino from its own 5 V regulator (500 mA max) unless a track on the bottom is cut.
+- Each motor takes a PWM pin for speed and a DIR pin for direction. PWM low means brake, not coast.
+- Pin choices are set with jumpers. DIR1: D2, D4 or D8. PWM1: D3, D5 or D9. DIR2: D7, D12 or D13. PWM2: D6, D10 or D11. The datasheet picture shows them on D8, D9, D13 and D11.
+
+Motors: two 24 V wire-feed motors from MIG welders, with a worm gear inside. The exact model isn't known. A worm gear can't be turned backwards by the track, so the tank holds still on a slope when the motors are off, but hard reversing puts a big jolt through the gearbox and drive wheel.
+
+Motor mount (from my Tinkercad design, which has the real bolt holes): two mirrored plates, 218 x 102 x 10 mm. Each has a 30 mm hole for the gearbox output and three 10 mm bolt holes around it. Measured from the CAD export, the bolt holes sit at about (46.5, -13.2), (-42.9, 36.8) and (-26.3, -42.5) mm from the centre of the big hole, and they're 102.4, 78.5 and 81.0 mm apart from each other. These are CAD numbers, not measured on the real motor.
+
+Battery box: the Tinkercad design also has a printed box with 4 slots, 228 x 152 x 42 mm, which fits the 4 packs.
 
 There are two different Arduino sketches that are both called tonk_control_v2. Don't flash either one based on the name. Check the motor driver and wiring on the tank first.
 
-- Older, in this repo at `../code/tonk_control_v2/`: left motor on D13/D11, right motor on D12/D3, RC inputs on D5/D6. If the RC signal drops out it may keep running the motors at the last speed.
-- Newer, outside this repo at `~/Documents/Arduino/tonk_control_v2/`: left motor on D8/D9, right motor on D13/D11, RC inputs on D5/D6, wheel encoders on D2/D3. Bad RC signals set the motors back to neutral, and it ramps speed changes instead of jumping.
+- Older, in this repo at `../code/tonk_control_v2/`: left motor on D13/D11, right motor on D12/D3, RC inputs on D5/D6. If the RC signal drops out it may keep running the motors at the last speed. This was for the old Arduino Motor Shield, which isn't on the tank anymore, and its pins don't match the Cytron.
+- Newer, outside this repo at `~/Documents/Arduino/tonk_control_v2/`: left motor on D8/D9, right motor on D13/D11, RC inputs on D5/D6, wheel encoders on D2/D3. Bad RC signals set the motors back to neutral, and it ramps speed changes instead of jumping. Its motor pins match the Cytron jumper positions in the datasheet picture, so this is the one written for the current driver. Still check the jumpers on the real board before uploading.
 
 The newer sketch was uploaded to an Uno R3 in June, but what is on the board now, the current wiring, and the encoders have not been checked since.
 
@@ -115,7 +129,8 @@ Continuous metal side rails with bolted crossmembers, keeping the existing suspe
 - [x] Record rough weight, terrain, and payload.
 - [x] Estimate the tank's weight (10 to 23 kg from CAD, Nov 12, 2026).
 - [ ] Weigh the tank if a scale turns up (a luggage scale or the makerspace could work).
-- [ ] Check the reusable parts and record their mounting dimensions.
+- [ ] Check the reusable parts and record their mounting dimensions. Motor mount holes are recorded from CAD.
+- [ ] Copy the newer Arduino sketch into this repo under a different name, so the two versions can't get mixed up.
 - [x] Establish that the old roller bolts gripped undersized holes, locked the rollers, and caused sliding contact with the moving track.
 - [ ] Measure the bottom roller axle assembly and track-contact surfaces; agree on axle retention and the rotating interface before redesigning it.
 - [x] Find the original wheel and track model, its licence, and the scale factor used.
