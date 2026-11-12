@@ -44,7 +44,7 @@ Found on Nov 12, 2026. The wheels, suspension arms, sprockets, and tracks come f
 
 Scale: my rollers are about 105 and 92 across, which matches his 2" and 1.75" wheels at about 2.06 times. My track is about 105 wide, which matches his 2" track at the same scale. So everything was scaled up to roughly 206%. This comes from comparing his listed sizes with my files, not from measuring his original files.
 
-The shock absorber model (susp_noprint) isn't in either listing, so where it came from still needs checking. The drive wheel started as his drive sprocket B from the track set (matched by eye from his picture), and I added a hub for the flange coupler.
+The shock absorber model (susp_noprint) isn't from these two listings or from fastmike75's printed shocks (https://www.thingiverse.com/thing:471658, CC BY-NC), which are chunky printed tubes. Its thin rod and the "noprint" name suggest it's a stand-in for real metal shocks, but where the model came from is still unknown. The drive wheel started as his drive sprocket B from the track set (matched by eye from his picture), and I added a hub for the flange coupler.
 
 Useful notes from his listings:
 
@@ -74,6 +74,21 @@ The newer sketch was uploaded to an Uno R3 in June, but what is on the board now
 
 Continuous metal side rails with bolted crossmembers, keeping the existing suspension geometry where practical. Check how the suspension, shocks, motors, and track tension load the frame before choosing rail sections or brackets. Aluminium is the preferred material to investigate; steel is still an option if the requirements call for it. Material, section sizes, fasteners, and mounting details are not selected yet.
 
+## Forge funding
+
+Checked Hack Club's Forge docs on Nov 12, 2026 (https://github.com/hackclub/forge, in the docs folder). The website itself only says it funds hardware projects for ages 13 to 18.
+
+- I have to be 13 to 18 and in the Hack Club Slack.
+- Finished projects can't be submitted, and a project in progress has to be journaled from the start. So I need to start journaling the rebuild now. The docs don't say whether a rebuild of an older project counts as new, so I should ask in #forge.
+- The journal is either on the Forge site or a JOURNAL.md in the repo root that gets synced. Every entry needs a date and short title, at least one picture, and "Total time spent: X hours". Small regular entries are better than one big dump. It has to be written by me. AI-written entries get rejected.
+- The design has to be my own work, not copied and not made by AI. Reusing parts is allowed on the lower tiers if I'm open about it, so the fastmike75 parts need clear credit (done in the README) and the new frame and rollers have to be designed by me.
+- Funding comes as coins per hour of work (1 coin = 1 USD). There are 4 tiers (7.5, 6.5, 5.0 and 4.5 coins per hour) plus bonuses for journaling streaks. Tier 1 needs a pitch in #forgery with a rough BOM and why it's worth more than $200. The reviewer decides the final tier.
+- Money comes on an HCB card. Keep every receipt, and ask in #forge-help before buying anything I'm unsure about.
+- The budget covers the minimum parts and tools needed and the cheapest way to make parts. It doesn't cover software licences, extra spares, or kits that replace parts I'm supposed to design. Filament is partly reimbursed.
+- The repo needs a README with pictures, a BOM as a CSV with links and a total, CAD source and STEP files, firmware source, build photos, and a demo video.
+- No double-dipping with other Hack Club programs.
+- The docs don't mention licences or selling. Getting a grant to build my own tank isn't selling anything, but asking in #forge about the CC BY-NC parts would settle it.
+
 ## Roadmap
 
 - [x] Find the old GitHub repo and Tinkercad project.
@@ -89,7 +104,9 @@ Continuous metal side rails with bolted crossmembers, keeping the existing suspe
 - [ ] Measure the bottom roller axle assembly and track-contact surfaces; agree on axle retention and the rotating interface before redesigning it.
 - [x] Find the original wheel and track model, its licence, and the scale factor used.
 - [x] Add a credits and licence note for the fastmike75 and night--wolf files to the repo (README, Nov 12, 2026).
-- [ ] Find where the shock absorber model came from.
+- [ ] Find where the shock absorber model came from. It isn't fastmike75's printed shocks.
+- [ ] Start a Forge journal for the rebuild now (JOURNAL.md in the repo or on the Forge site), written by me, with hours and a picture each time.
+- [ ] Ask in #forge whether a rebuild of my older tank counts as a new project, and about the CC BY-NC parts.
 - [ ] Inspect the track pins and decide whether their replacement is needed while keeping the links. The original design used metal brad nails, not printed pins.
 - [ ] Measure the assembled frame width, suspension pivots, shock mounts, sprocket and idler positions, and track adjustment.
 - [ ] Check metal-cutting options and available stock with the makerspace.
