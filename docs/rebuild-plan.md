@@ -4,7 +4,7 @@
 
 Rebuild my roughly 1 m long RC tank with a stronger frame. Keep the general layout and reuse the motors, electronics, shocks, and suspension arms where they still work. The old printed frame snapped as the whole tank bent. The exact crack locations and failed joints still need documenting.
 
-Use this repo as the project folder. Nothing has been designed or built for the new tank yet. Forge funding comes later, once the design and budget are clearer.
+Use this repo as the project folder. Nothing has been designed or built for the new tank yet. This is a personal project. I'm not submitting it to Forge or any other Hack Club program.
 
 ## How I'll use it
 
@@ -55,7 +55,7 @@ Useful notes from his listings:
 Licences:
 
 - Credit fastmike75, and night--wolf for the track, wherever these files are shared.
-- The wheel and arm files are non-commercial (BY-NC). Fine for a personal project, but not for selling them or parts made from them. Check Forge's rules on this before applying.
+- The wheel and arm files are non-commercial (BY-NC). Fine for a personal project, but not for selling them or parts made from them.
 - The track files are share-alike (BY-SA). Changed versions I share have to use CC BY-SA too.
 - The MIT licence on this repo doesn't cover these files. The repo needs a note saying which files came from where and under which licence.
 
@@ -74,21 +74,6 @@ The newer sketch was uploaded to an Uno R3 in June, but what is on the board now
 
 Continuous metal side rails with bolted crossmembers, keeping the existing suspension geometry where practical. Check how the suspension, shocks, motors, and track tension load the frame before choosing rail sections or brackets. Aluminium is the preferred material to investigate; steel is still an option if the requirements call for it. Material, section sizes, fasteners, and mounting details are not selected yet.
 
-## Forge funding
-
-Checked Hack Club's Forge docs on Nov 12, 2026 (https://github.com/hackclub/forge, in the docs folder). The website itself only says it funds hardware projects for ages 13 to 18.
-
-- I have to be 13 to 18 and in the Hack Club Slack.
-- Finished projects can't be submitted, and a project in progress has to be journaled from the start. So I need to start journaling the rebuild now. The docs don't say whether a rebuild of an older project counts as new, so I should ask in #forge.
-- The journal is either on the Forge site or a JOURNAL.md in the repo root that gets synced. Every entry needs a date and short title, at least one picture, and "Total time spent: X hours". Small regular entries are better than one big dump. It has to be written by me. AI-written entries get rejected.
-- The design has to be my own work, not copied and not made by AI. Reusing parts is allowed on the lower tiers if I'm open about it, so the fastmike75 parts need clear credit (done in the README) and the new frame and rollers have to be designed by me.
-- Funding comes as coins per hour of work (1 coin = 1 USD). There are 4 tiers (7.5, 6.5, 5.0 and 4.5 coins per hour) plus bonuses for journaling streaks. Tier 1 needs a pitch in #forgery with a rough BOM and why it's worth more than $200. The reviewer decides the final tier.
-- Money comes on an HCB card. Keep every receipt, and ask in #forge-help before buying anything I'm unsure about.
-- The budget covers the minimum parts and tools needed and the cheapest way to make parts. It doesn't cover software licences, extra spares, or kits that replace parts I'm supposed to design. Filament is partly reimbursed.
-- The repo needs a README with pictures, a BOM as a CSV with links and a total, CAD source and STEP files, firmware source, build photos, and a demo video.
-- No double-dipping with other Hack Club programs.
-- The docs don't mention licences or selling. Getting a grant to build my own tank isn't selling anything, but asking in #forge about the CC BY-NC parts would settle it.
-
 ## Roadmap
 
 - [x] Find the old GitHub repo and Tinkercad project.
@@ -105,15 +90,13 @@ Checked Hack Club's Forge docs on Nov 12, 2026 (https://github.com/hackclub/forg
 - [x] Find the original wheel and track model, its licence, and the scale factor used.
 - [x] Add a credits and licence note for the fastmike75 and night--wolf files to the repo (README, Nov 12, 2026).
 - [ ] Find where the shock absorber model came from. It isn't fastmike75's printed shocks.
-- [ ] Start a Forge journal for the rebuild now (JOURNAL.md in the repo or on the Forge site), written by me, with hours and a picture each time.
-- [ ] Ask in #forge whether a rebuild of my older tank counts as a new project, and about the CC BY-NC parts.
 - [ ] Inspect the track pins and decide whether their replacement is needed while keeping the links. The original design used metal brad nails, not printed pins.
 - [ ] Measure the assembled frame width, suspension pivots, shock mounts, sprocket and idler positions, and track adjustment.
 - [ ] Check metal-cutting options and available stock with the makerspace.
 - [ ] Compare frame sections and joint layouts against the loads and clearances.
 - [ ] Agree on the layout and dimensions before making new CAD.
 - [ ] Redesign the bottom rollers with smooth geometry and the agreed axle arrangement.
-- [ ] Design the frame and brackets, then make the BOM and Forge funding plan.
+- [ ] Design the frame and brackets, then make the BOM.
 - [ ] Build, inspect, and test in stages.
 
 ## Existing design references
